@@ -1,12 +1,23 @@
-import { useState } from 'react'
+import React from 'react'
 
+const welcome = {
+  greeting: 'Hey',
+  title: 'React',
+};
+  
+function dummyName(a) {
+  return 'dummyName' + ' ' + a;
+}
+  
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
-        <h1>Hello World</h1>
+        <h1>{welcome.greeting}, {welcome.title}, {dummyName('usmt-cop')}</h1>
+
+        <label htmlFor="search">Search: </label>
+        <input id="search" type="text" />
+
       </div>
     </>
   )
