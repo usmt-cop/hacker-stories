@@ -27,19 +27,30 @@ function Search() {
   )
 }
 
+function Item(object) {
+  const item = object.item
+  return (
+    <div>
+      <span>{item.title}</span>
+      <span>{item.author}</span>
+      <span>{item.num_comments}</span>
+      <span>{item.points}</span>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+    </div>
+  )
+}
+
 function List() {
   return (
     <ul>
     {list.map(function (item) {
-      return <li key={item.objectID}>
-        <span>{item.title}</span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-      </li>;
+      return (
+        <li key={item.objectID}>
+          <Item item={item} />
+        </li>
+      )
     })}
   </ul>
   )
