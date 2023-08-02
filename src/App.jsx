@@ -1,14 +1,42 @@
 
-const a = [1, 2, 3];
-const b = [...a, 4, 5, 6];
+const list = [
+  {
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  }
+];
 
 function App() {
 
   return (
     <>
       <div>
-        <h1>a = {a}</h1>
-        <h1>b = {b}</h1>
+        <ul>
+          {list.map(function (item) {
+            return <li key={item.objectID}>
+              <span>{item.title}</span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+              <span>
+                <a href={item.url}>{item.title}</a>
+              </span>
+            </li>;
+          })}
+        </ul>
+
       </div>
     </>
   )
