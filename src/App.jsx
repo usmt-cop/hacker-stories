@@ -86,6 +86,7 @@ const App = () => {
       objectID: 1,
     }
   ];
+
   
   const [counter, setCounter] = React.useState(0)
   const incrementHandle = () => {
@@ -94,12 +95,17 @@ const App = () => {
   const decrementHandle = () => {
     setCounter(counter - 1)
   }
-
+  
   const [searchTerm, setSearchTerm] = React.useState('')
   const handleChange = (event) => {
     setSearchTerm(event.target.value)
   }
-
+  const searchedStories = stories.filter(
+    function (story) {
+      return story.title.includes(searchTerm)
+    }
+  );
+  
   return (
     <>
       <div>
@@ -107,7 +113,7 @@ const App = () => {
         <Search term={searchTerm} change={handleChange} />
         <hr />
 
-        <List list={stories}/>
+        <List list={searchedStories} />
         <Button state={counter} increment={incrementHandle} decremnet={decrementHandle} />
       </div>
     </>
