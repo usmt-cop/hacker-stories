@@ -1,14 +1,14 @@
+import React from 'react'
 
+const Search = (prop) => {
 
-const Search = () => {
-  const handleChange = (event) => {
-    console.log(event)
-    console.log(event.target.value)
-  }
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" onChange={handleChange} type="text" />
+      <input id="search" onChange={prop.change} type="text" />
+      <p>
+        The search term is : {prop.term}
+      </p>
     </div>
   )
 }
@@ -41,6 +41,31 @@ const List = (prop)=> {
     </ul>
   )
 }
+const Button = (prop) => {
+  return (
+    <div>
+
+      <div>
+        <button onClick={prop.decremnet}>
+          decrement
+        </button>
+        <button>{prop.state}</button>
+        <button onClick={prop.increment}>
+          increment
+        </button>
+      </div>
+      <div>
+        <button onClick={prop.decremnet}>
+          decrement
+        </button>
+        <button>{prop.state}</button>
+        <button onClick={prop.increment}>
+          increment
+        </button>
+      </div>
+    </div>
+  )
+}
 
 const App = () => {
   const stories = [
@@ -62,14 +87,28 @@ const App = () => {
     }
   ];
   
+  const [counter, setCounter] = React.useState(0)
+  const incrementHandle = () => {
+    setCounter(counter + 1)
+  }
+  const decrementHandle = () => {
+    setCounter(counter - 1)
+  }
+
+  const [searchTerm, setSearchTerm] = React.useState('')
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   return (
     <>
       <div>
         <h1>My Hacker Stories</h1>
-        <Search />
+        <Search term={searchTerm} change={handleChange} />
         <hr />
 
-        <List list={stories} />
+        <List list={stories}/>
+        <Button state={counter} increment={incrementHandle} decremnet={decrementHandle} />
       </div>
     </>
   )
